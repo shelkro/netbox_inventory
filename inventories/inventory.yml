@@ -1,14 +1,15 @@
+---
 plugin: netbox.netbox.nb_inventory
 validate_certs: False
 
 compose:
   ansible_network_os: platform.slug
   
-group_by: 
- - device_roles
- - sites
- - platforms
+group_by:
+  - device_roles
+  - sites
+  - platforms
  
 device_query_filters:
- - has_primary_ip: 'true'
- - status: active
+  - has_primary_ip: 'true'
+  - status: active
