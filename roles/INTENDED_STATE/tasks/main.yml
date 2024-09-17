@@ -1,7 +1,7 @@
 ---
 - name: Display all variables/facts known for a host
   debug:
-    var: hostvars[inventory_hostname]
+    msg: "{{ lookup('ansible.builtin.env', 'NETBOX_API') }}"
     
 - name: 1 - Get device details from NetBox
   uri:
