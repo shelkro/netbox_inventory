@@ -1,4 +1,8 @@
 ---
+- name: Display all variables/facts known for a host
+  debug:
+    var: hostvars[inventory_hostname]
+    
 - name: 1 - Get device details from NetBox
   uri:
       url: "{{ netbox_url }}api/dcim/devices/?name={{ inventory_hostname }}"
