@@ -1,2 +1,4 @@
 ---
 ansible_port: 23
+nb_url: "{{ lookup('ansible.builtin.env', 'NETBOX_API'}}"
+nb_token: "{{ lookup('ansible.builtin.env', 'NETBOX_TOKEN'}}"
