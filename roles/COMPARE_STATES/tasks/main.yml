@@ -29,7 +29,7 @@
 
 - name: 5 - Configuration to be applied
   debug:
-    msg: "{{ diff_output.stdout_lines | select('match', '^>*') | list }}"
+    msg: "{{ diff_output.stdout_lines | select('match', '^>.*$') | list }}"
   when: diff_output.stdout != ""
   delegate_to: localhost
   
