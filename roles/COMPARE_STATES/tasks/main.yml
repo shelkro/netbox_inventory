@@ -27,7 +27,13 @@
   when: diff_output.stdout != ""
   delegate_to: localhost
 
-- name: 5 - Cleanup temp actual configuration file
+- name: 5 - Configuration to be applied
+  debug:
+    msg: "{{ diff_output.stdout_lines 'select', 'match', '^>*' }}"
+  when: diff_output.stdout != ""
+  delegate_to: localhost
+  
+- name: 6 - Cleanup temp actual configuration file
   ansible.builtin.file:
     path: "{{ actual_temp_file.dest }}"
     state: absent
