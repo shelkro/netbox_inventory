@@ -35,7 +35,7 @@ no ip routing
 !
 ip route 0.0.0.0/0 172.21.21.1
 !
-{%- for server in ntp-servers %}
+{%- for server in ntp_servers %}
 ntp server {{ server }}
 !
 {%- endfor %}
