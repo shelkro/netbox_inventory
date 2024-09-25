@@ -1,42 +1,42 @@
-
+!
 no aaa root
-
+!
 username admin privilege 15 role network-admin secret sha512 $6$velLmv2Atc0Mcewk$UzB1Mh1Z81Kv2KfH6AMWFNN6FEWhKu8CqaDELmuqDMeu/NT/dDeNS5Fssk4Hg78FRSCDBcGeiHHAdvsg7/Xjv/
-
+!
 transceiver qsfp default-mode 4x10G
-
+!
 service routing protocols model multi-agent
-
+!
 hostname {{ device.name }}
-
+!
 spanning-tree mode mstp
-
+!
 {%- for vl in device.site.vlans.all() %}
 vlan {{vl.vid }}
    name {{ vl.name }}
-
+!
 {%- endfor %}
 management api http-commands
    no shutdown
-
+!
 management api gnmi
    transport grpc default
-
+!
 management api netconf
    transport ssh default
-
+!
 interface Ethernet1
-
+!
 interface Ethernet2
-
+!
 interface Management0
-
+!
 no ip routing
-
+!
 ip route 0.0.0.0/0 172.21.21.1
-
+!
 {%- for server in ntp_servers %}
 ntp server {{ server }}
-
+!
 {%- endfor %}
 end
