@@ -18,6 +18,7 @@ vlan {{vl.vid }}
    name {{ vl.name }}
 
 {%- endfor %}
+
 management api http-commands
    no shutdown
 
@@ -42,4 +43,5 @@ ip route 0.0.0.0/0 172.21.21.1
 ntp server {{ server }}
 
 {%- endfor %}
+
 end
