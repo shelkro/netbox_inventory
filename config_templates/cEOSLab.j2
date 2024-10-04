@@ -29,7 +29,6 @@ management api netconf
    transport ssh default
 
 {% for interface in device.interfaces.all() %} 
-
 {%- if interface.mgmt_only == false %}
 
 interface {{ interface.name }} 
@@ -48,9 +47,7 @@ interface {{ interface.name }}
    {%- endfor %} 
    {%- elif "tagged-all" in interface.mode %}
    switchport mode trunk switchport trunk allowed vlan all 
-   
    {%- endif %} 
-   
 {%- else %} 
 
 interface {{ interface.name }} 
@@ -61,9 +58,7 @@ interface {{ interface.name }}
    no shutdown 
    {%- endif %} 
    ip address {{ device.primary_ip.address }} {{ device.primary_ip.address.netmask }} 
-   
 {%- endif %}
-
 {%- endfor %}
 
 no ip routing
