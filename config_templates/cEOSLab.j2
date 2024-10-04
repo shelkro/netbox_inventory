@@ -48,7 +48,8 @@ interface {{ interface.name }}
    switchport mode trunk switchport trunk allowed vlan all 
    {%- endif %} 
 {%- else %} 
-interface {{ interface.name }} description Management VLAN 
+interface {{ interface.name }} 
+   description Management VLAN 
    {%- if interface.enabled == false %} 
    shutdown 
    {%- elif interface.enabled == true %} 
@@ -56,6 +57,7 @@ interface {{ interface.name }} description Management VLAN
    {%- endif %} 
    ip address {{ device.primary_ip.address }} {{ device.primary_ip.address.netmask }} 
 {%- endif %}
+
 {%- endfor %}
 
 no ip routing
