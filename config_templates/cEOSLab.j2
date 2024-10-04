@@ -46,6 +46,7 @@ interface {{ interface.name }}
    {%- endfor %} 
    {%- elif "tagged-all" in interface.mode %}
    switchport mode trunk switchport trunk allowed vlan all 
+   {%- endif %} 
 {%- else %} 
 interface {{ interface.name }} description Management VLAN 
    {%- if interface.enabled == false %} 
