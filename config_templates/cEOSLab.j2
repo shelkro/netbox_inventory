@@ -29,7 +29,6 @@ management api netconf
    transport ssh default
 
 {% for interface in device.interfaces.all() %} 
-
 interface {{ interface.name }} 
 
 {% endfor %}
