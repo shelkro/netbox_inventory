@@ -55,7 +55,7 @@ interface {{ interface.name }} description Management VLAN
    {%- endif %} 
    ip address {{ device.primary_ip.address }} {{ device.primary_ip.address.netmask }} 
 {%- endif %}
-{% endfor %}
+{%- endfor %}
 
 no ip routing
 
