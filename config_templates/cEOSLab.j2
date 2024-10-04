@@ -27,7 +27,6 @@ management api gnmi
 
 management api netconf
    transport ssh default
-
 {% for interface in device.interfaces.all() %} 
 {%- if interface.mgmt_only == false %}
 
