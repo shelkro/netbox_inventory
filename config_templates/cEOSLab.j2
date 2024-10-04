@@ -30,7 +30,6 @@ management api netconf
 
 {% for interface in device.interfaces.all() %} 
 interface {{ interface.name }} 
-
 {% endfor %}
 
 no ip routing
