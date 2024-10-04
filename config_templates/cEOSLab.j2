@@ -28,11 +28,11 @@ management api gnmi
 management api netconf
    transport ssh default
 
-interface Ethernet1
+{% for interface in device.interfaces.all() %} 
 
-interface Ethernet2
+interface {{ interface.name }} 
 
-interface Management0
+{% endfor %}
 
 no ip routing
 
