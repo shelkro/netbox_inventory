@@ -29,7 +29,9 @@ management api netconf
    transport ssh default
 
 {% for interface in device.interfaces.all() %} 
+
 {%- if interface.mgmt_only == false %}
+
 interface {{ interface.name }} 
    {%- if interface.enabled == false %}
    shutdown 
@@ -50,6 +52,7 @@ interface {{ interface.name }}
    {%- endif %} 
    
 {%- else %} 
+
 interface {{ interface.name }} 
    description Management VLAN 
    {%- if interface.enabled == false %} 
