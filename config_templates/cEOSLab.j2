@@ -26,36 +26,36 @@ management api gnmi
 
 management api netconf
    transport ssh default
-{% for interface in device.interfaces.all() %} 
+{% for interface in device.interfaces.all() %}
 {%- if interface.mgmt_only == false %}
 
 interface {{ interface.name }}
    description {{ interface.description }}
 {%- if interface.enabled == false %}
    shutdown
-{%- elif interface.enabled == true %} 
+{%- elif interface.enabled == true %}
    no shutdown
-{%- endif %} 
-{%- if interface.mode == "access" %} 
+{%- endif %}
+{%- if interface.mode == "access" %}
    switchport mode access
    switchport access vlan {{ interface.untagged_vlan.vid }}
-{%- elif interface.mode == "tagged" %} 
+{%- elif interface.mode == "tagged" %}
    switchport mode trunk
-{%- for vlan in interface.tagged_vlans.all() %} 
+{%- for vlan in interface.tagged_vlans.all() %}
    switchport trunk allowed vlan add {{ vlan.vid }}
 {%- endfor %}
 {%- elif "tagged-all" in interface.mode %}
    switchport mode trunk switchport trunk allowed vlan all
-{%- endif %} 
-{%- else %} 
+{%- endif %}
+{%- else %}
 
 interface {{ interface.name }}
    description {{ interface.description }}
-{%- if interface.enabled == false %} 
+{%- if interface.enabled == false %}
    shutdown
-{%- elif interface.enabled == true %} 
+{%- elif interface.enabled == true %}
    no shutdown
-{%- endif %} 
+{%- endif %}
 {%- endif %}
 {%- endfor %}
 
