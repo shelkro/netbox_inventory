@@ -55,7 +55,6 @@ interface {{ interface.name }}
    {%- elif interface.enabled == true %} 
    no shutdown 
    {%- endif %} 
-   ip address {{ device.primary_ip.address }} {{ device.primary_ip.address.netmask }} 
 {%- endif %}
 {%- endfor %}
 
