@@ -31,31 +31,31 @@ management api netconf
 
 interface {{ interface.name }}
    description {{ interface.description }}
-   {%- if interface.enabled == false %}
+{%- if interface.enabled == false %}
    shutdown
-   {%- elif interface.enabled == true %} 
+{%- elif interface.enabled == true %} 
    no shutdown
-   {%- endif %} 
-   {%- if interface.mode == "access" %} 
+{%- endif %} 
+{%- if interface.mode == "access" %} 
    switchport mode access
    switchport access vlan {{ interface.untagged_vlan.vid }}
-   {%- elif interface.mode == "tagged" %} 
+{%- elif interface.mode == "tagged" %} 
    switchport mode trunk
-   {%- for vlan in interface.tagged_vlans.all() %} 
+{%- for vlan in interface.tagged_vlans.all() %} 
    switchport trunk allowed vlan add {{ vlan.vid }}
-   {%- endfor %}
-   {%- elif "tagged-all" in interface.mode %}
+{%- endfor %}
+{%- elif "tagged-all" in interface.mode %}
    switchport mode trunk switchport trunk allowed vlan all
-   {%- endif %} 
+{%- endif %} 
 {%- else %} 
 
 interface {{ interface.name }}
    description {{ interface.description }}
-   {%- if interface.enabled == false %} 
+{%- if interface.enabled == false %} 
    shutdown
-   {%- elif interface.enabled == true %} 
+{%- elif interface.enabled == true %} 
    no shutdown
-   {%- endif %} 
+{%- endif %} 
 {%- endif %}
 {%- endfor %}
 
