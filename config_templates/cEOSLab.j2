@@ -29,32 +29,32 @@ management api netconf
 {% for interface in device.interfaces.all() %} 
 {%- if interface.mgmt_only == false %}
 
-interface {{ interface.name }} 
+interface {{ interface.name }}
    description {{ interface.description }}
    {%- if interface.enabled == false %}
-   shutdown 
+   shutdown
    {%- elif interface.enabled == true %} 
-   no shutdown 
+   no shutdown
    {%- endif %} 
    {%- if interface.mode == "access" %} 
    switchport mode access
-   switchport access vlan {{ interface.untagged_vlan.vid }} 
+   switchport access vlan {{ interface.untagged_vlan.vid }}
    {%- elif interface.mode == "tagged" %} 
-   switchport mode trunk 
+   switchport mode trunk
    {%- for vlan in interface.tagged_vlans.all() %} 
-   switchport trunk allowed vlan add {{ vlan.vid }} 
-   {%- endfor %} 
+   switchport trunk allowed vlan add {{ vlan.vid }}
+   {%- endfor %}
    {%- elif "tagged-all" in interface.mode %}
-   switchport mode trunk switchport trunk allowed vlan all 
+   switchport mode trunk switchport trunk allowed vlan all
    {%- endif %} 
 {%- else %} 
 
-interface {{ interface.name }} 
+interface {{ interface.name }}
    description {{ interface.description }}
    {%- if interface.enabled == false %} 
-   shutdown 
+   shutdown
    {%- elif interface.enabled == true %} 
-   no shutdown 
+   no shutdown
    {%- endif %} 
 {%- endif %}
 {%- endfor %}
