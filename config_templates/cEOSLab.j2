@@ -30,6 +30,7 @@ management api netconf
 {%- if interface.mgmt_only == false %}
 
 interface {{ interface.name }} 
+   description {{ interface.description }}
    {%- if interface.enabled == false %}
    shutdown 
    {%- elif interface.enabled == true %} 
